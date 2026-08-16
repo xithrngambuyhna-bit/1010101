@@ -1,0 +1,42 @@
+local Players = game:GetService("Players")
+local RunService = game:GetService("RunService")
+local TweenService = game:GetService("TweenService")
+local player = Players.LocalPlayer
+
+-- Container สำหรับ Executor
+local targetParent
+if gethui then
+	targetParent = gethui()
+elseif game:GetService("CoreGui"):FindFirstChild("RobloxGui") then
+	targetParent = game:GetService("CoreGui")
+else
+	targetParent = player:WaitForChild("PlayerGui")
+end
+
+if targetParent:FindFirstChild("MungkornGUI") then
+	targetParent.MungkornGUI:Destroy()
+end
+
+local screenGui = Instance.new("ScreenGui")
+screenGui.Name = "MungkornGUI"
+screenGui.ResetOnSpawn = false
+screenGui.Parent = targetParent
+
+-- Asset ID รูปน้องสาว (1000023682.png)
+local SISTER_IMAGE_ID = "rbxassetid://1000023682"
+
+-- ==========================================
+-- 1. MAIN MENU (หน้าต่างหลัก)
+-- ==========================================
+local mainFrame = Instance.new("Frame")
+mainFrame.Name = "MainFrame"
+mainFrame.Size = UDim2.new(0, 310, 0, 320)
+mainFrame.Position = UDim2.new(0.5, -155, 0.4, -160)
+mainFrame.BackgroundColor3 = Color3.fromRGB(20, 20, 23)
+mainFrame.BorderSizePixel = 0
+mainFrame.Active = true
+mainFrame.Draggable = true
+mainFrame.Parent = screenGui
+
+local mainCorner = Instance.new("UICorner")
+mainCorner.CornerRadius =
